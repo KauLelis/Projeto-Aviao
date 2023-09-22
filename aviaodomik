@@ -1,0 +1,9 @@
+public class AVIAO { 
+private int flightNumber;
+    private String origin;
+    private String destination;
+    private String departureTime;
+    private String arrivalTime;
+    private int maxPassengers;
+    private Queue<Passenger> pendingReservations = new LinkedList<>();
+    private Stack<Passenger> checkedInPassengers = new Stack<>();
