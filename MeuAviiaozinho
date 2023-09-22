@@ -7,4 +7,5 @@ class QueroMeuAviaoAgora {
         String voo sc.next();
         System.out.println(VOONUMERO01)
     }
-}
+}public string; 
+
