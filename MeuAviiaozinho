@@ -1,1 +1,10 @@
-
+class QueroMeuAviaoAgora {
+    public static void main(String[] args) {
+     // le o comando
+    
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Voos disponiveis, escolha seu voo: ");
+        String voo sc.next();
+        System.out.println(VOONUMERO01)
+    }
+}
