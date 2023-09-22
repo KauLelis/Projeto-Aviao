@@ -6,8 +6,8 @@ private int NumeroDoVOO;
     private String HoraDeSaida;
     private String HoraDeChegada;
     private int NumeroMaximoDePassageiros;
-    private Queue<Passenger> pendingReservations = new LinkedList<>();
-    private Stack<Passenger> checkedInPassengers = new Stack<>();
-]
+
+Stack<Integer> pilha = new Stack<>();
+
 
 }
