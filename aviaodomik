@@ -1,9 +1,13 @@
 public class AVIAO { 
-private int flightNumber;
-    private String origin;
-    private String destination;
-    private String departureTime;
-    private String arrivalTime;
-    private int maxPassengers;
+public static void main(String[] args) {
+private int NumeroDoVOO;
+    private String origem;
+    private String destino;
+    private String HoraDeSaida;
+    private String HoraDeChegada;
+    private int NumeroMaximoDePassageiros;
     private Queue<Passenger> pendingReservations = new LinkedList<>();
     private Stack<Passenger> checkedInPassengers = new Stack<>();
+]
+
+}
