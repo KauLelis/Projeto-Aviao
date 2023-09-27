@@ -1,0 +1,33 @@
+package Voo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        List<Voo> lista_voos = new ArrayList<>();
+        
+        lista_voos.add(new Voo("2345", 200, "ES", 
+        "SP", "18:00", "22:00"));
+
+        lista_voos.add(new Voo("3345", 235, "ES", 
+        "MG", "17:00", "21:00"));
+        
+        lista_voos.add(new Voo("3388", 300, "SP", 
+        "RJ", "17:00", "21:00"));
+        
+        while(true) {
+
+        String resposta = Voo.mostrarVoos(lista_voos);
+    
+        if(resposta.equals("0")){
+            
+            break;
+            
+        }
+        
+    }
+
+  }
+}
