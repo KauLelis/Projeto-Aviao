@@ -1,0 +1,18 @@
+package Voo;
+
+public class Usuario {
+
+    public String nome;
+    public int idade;
+    public String CPF;
+    public String email;
+    
+    public Usuario(String nome, int idade, String CPF, String email){
+
+        this.nome = nome;
+        this.idade = idade;
+         this.CPF = CPF;
+        this.email = email;
+    }
+
+}
