@@ -1,0 +1,16 @@
+package Voo;
+
+public class Administrador {
+
+    public String CPF;
+    public String codigo;
+
+    public Administrador(String CPF, String codigo ) {
+    
+        this.CPF = CPF;
+        this.codigo = codigo;
+
+    }
+
+
+}
