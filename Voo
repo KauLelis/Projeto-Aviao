@@ -1,0 +1,53 @@
+package Voo;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class Voo {
+    
+    public String numero;
+    public int qtd_max_passageiros;
+    public String origem;
+    public String destino;
+    public String horario_partida;
+    public String horario_chegada;
+
+    public Voo(String numero, int qtd_max_passageiros, String origem, String destino, String horario_partida, String horario_chegada){
+
+        if(numero.length() == 4) {
+            
+            this.numero = numero;
+            this.qtd_max_passageiros = qtd_max_passageiros;
+            this.origem = origem;
+            this.destino = destino;
+            this.horario_partida = horario_partida;
+            this.horario_chegada = horario_chegada;
+
+        }
+        
+    }
+    
+    public static String mostrarVoos(List<Voo> lista_voos) {
+        
+        Scanner scn = new Scanner(System.in);
+        System.out.println("\n".repeat(40));
+
+        for(int i = 0; i < lista_voos.size(); i++){
+           
+            Voo voo = lista_voos.get(i);
+            System.out.println("");
+            System.out.print("#".repeat(20));
+            System.out.print("  " + (i + 1) + "º VÔO  ");
+            System.out.print("#".repeat(20));
+
+            System.out.println("");
+            System.out.println("");
+            System.out.println("Número: " + voo.numero);
+            System.out.println("Origem: " + voo.origem);
+            System.out.println("Destino: " + voo.destino);
+
+            String n_voos = Integer.toString(lista_voos.size());
+
+            System.out.println("");
