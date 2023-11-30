@@ -1,14 +1,96 @@
 package Voo;
 
+import java.util.Scanner;
+
 public class Administrador {
 
-    public String CPF;
-    public String codigo;
+    private String CPF;
+    private String codigo;
+    public static boolean logged = false;
 
-    public Administrador(String CPF, String codigo ) {
+    public Administrador() {
     
-        this.CPF = CPF;
-        this.codigo = codigo;
+        this.CPF = "123456";
+        this.codigo = "4";
+
+    }
+
+
+
+    public void entrar() {
+
+        System.out.println("\n".repeat(40));
+        Scanner scn = new Scanner(System.in);
+
+        System.out.println("Digite suas informações de ADM");
+        System.out.println("#".repeat(40));
+
+        System.out.println("CPF: ");
+        String cpf = scn.nextLine();        
+        
+        System.out.println("Código: ");
+        String cod = scn.nextLine();
+
+        System.out.println("#".repeat(40));
+
+        System.out.println("");
+
+        if(CPF.equals(cpf) && codigo.equals(cod)){
+            System.out.println("LOGIN EFETUADO COM SUCESSO!!");
+            logged = true;
+
+            
+            System.out.println("\n[0] Voltar");
+
+            int resposta = scn.nextInt();
+            if(resposta == 0){
+                Menu.mostrarMenu();   
+            }
+         
+        } else {
+            
+            System.out.println("CPF ou Código incorretos!!");
+            logged = false;
+
+            System.out.println("\n[0] Voltar");
+            System.out.println("[1] Tentar novamente");
+
+
+            int resposta = scn.nextInt();
+            if(resposta == 0){
+                Menu.mostrarMenu();   
+            }else if(resposta == 1){
+                entrar();
+            }
+
+        }
+
+
+    }
+
+    public static void checkin(){
+
+        Scanner scn = new Scanner(System.in);    
+        
+        while (!Reserva.reservas_pendentes.isEmpty()) {
+            
+            Reserva reserva = Reserva.reservas_pendentes.remove();
+            Reserva.reservas_aprovadas.push(reserva);
+            Reserva.lista_reservas.removeFirst();
+
+            reserva.voo.qtd_reservas++;
+            
+        }
+        
+        System.out.println("\n".repeat(40));
+
+        System.out.println("CHECK-IN GERAL CONCLUÍDO");
+        System.out.println("\n[0] Voltar");
+        String resposta = scn.nextLine();
+
+        if(resposta.equals("0")){
+            Menu.mostrarMenu();
+        }
 
     }
 
