@@ -14,5 +14,4 @@ public class Usuario {
          this.CPF = CPF;
         this.email = email;
     }
-
 }
