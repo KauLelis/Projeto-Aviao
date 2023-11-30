@@ -1,53 +1,231 @@
 package Voo;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
+
 public class Voo {
     
     public String numero;
     public int qtd_max_passageiros;
+    public int qtd_reservas;
     public String origem;
     public String destino;
     public String horario_partida;
     public String horario_chegada;
+    private static List<Voo> objetos =  new ArrayList<>();
 
     public Voo(String numero, int qtd_max_passageiros, String origem, String destino, String horario_partida, String horario_chegada){
 
-        if(numero.length() == 4) {
+        this.numero = numero;
+
+        if(this.numero.length() == 4) {
             
-            this.numero = numero;
             this.qtd_max_passageiros = qtd_max_passageiros;
+            this.qtd_reservas = 0;
             this.origem = origem;
             this.destino = destino;
             this.horario_partida = horario_partida;
             this.horario_chegada = horario_chegada;
 
+            objetos.add(this);
         }
         
     }
     
-    public static String mostrarVoos(List<Voo> lista_voos) {
+    public static void mostrarVoos() {
         
         Scanner scn = new Scanner(System.in);
+        int cont = 0;
+
         System.out.println("\n".repeat(40));
 
-        for(int i = 0; i < lista_voos.size(); i++){
+        for(int i = 0; i < objetos.size(); i++){
+            
+            Voo voo = objetos.get(i);
            
-            Voo voo = lista_voos.get(i);
-            System.out.println("");
-            System.out.print("#".repeat(20));
-            System.out.print("  " + (i + 1) + "º VÔO  ");
-            System.out.print("#".repeat(20));
+            if(voo.qtd_reservas < voo.qtd_max_passageiros){
 
-            System.out.println("");
-            System.out.println("");
-            System.out.println("Número: " + voo.numero);
-            System.out.println("Origem: " + voo.origem);
-            System.out.println("Destino: " + voo.destino);
+                cont++;
 
-            String n_voos = Integer.toString(lista_voos.size());
+                System.out.println("");
+                System.out.print("#".repeat(20));
+                System.out.print("  " + (i + 1) + "º VÔO  ");
+                System.out.print("#".repeat(20));
+    
+                System.out.println("");
+                System.out.println("");
+                System.out.println("Número: " + voo.numero);
+                System.out.println("Origem: " + voo.origem);
+                System.out.println("Destino: " + voo.destino);
+    
+                String n_voos = Integer.toString(objetos.size());
+    
+                System.out.println("");
+    
+                System.out.print("#".repeat(40 + 9 + n_voos.length()));
+    
+                System.out.println("");
+                 
+            }
 
-            System.out.println("");
+        }
+
+        if(cont <= 0){
+            System.out.println("\nNENHUM VÔO DISPONÍVEL");
+        }
+
+        System.out.println("");
+        System.out.println("[0] Voltar");
+        if(cont > 0){
+            System.out.println("Digite o número do vôo para visualizar suas informações: ");
+        }
+
+        String resposta = scn.nextLine();
+
+        switch(resposta){
+            case "0":
+                Menu.mostrarMenu();
+                break;
+            default:
+                Voo.visualizarVoo(resposta);
+
+        }
+        
+
+        
+    }
+
+    public static void mostrarVoosCheios(){
+
+        Scanner scn = new Scanner(System.in);
+
+        System.out.println("\n".repeat(40));
+
+        int cont = 0;
+
+        for(int i = 0; i < objetos.size(); i++){
+           
+            Voo voo = objetos.get(i);
+    
+            if(voo.qtd_reservas >= voo.qtd_max_passageiros){
+
+                cont++;
+                System.out.println("#".repeat(40));
+                System.out.println("");
+                System.out.println("Número: " + voo.numero);
+                System.out.println("Origem: " + voo.origem);
+                System.out.println("Destino: " + voo.destino);
+                System.out.println("Quantidade máxima de passageiros: " + voo.qtd_max_passageiros);
+                System.out.println("Reservas restantes: " + (voo.qtd_max_passageiros - voo.qtd_reservas));
+                System.out.println("STATUS: CHEIO");
+                System.out.println("");
+                System.out.println("#".repeat(40));
+
+            }
+        }
+
+        if(cont == 0){
+
+            System.out.println("NENHUM VÔO CHEIO.");
+            System.out.println("[0] Voltar");
+
+            String resposta = scn.nextLine();
+            if(resposta.equals("0")){
+                Menu.mostrarMenu();
+            }
+        }else{
+            System.out.println("[0] Voltar");
+            String resposta = scn.nextLine();
+            if(resposta.equals("0")){
+                Menu.mostrarMenu();
+            }
+        }
+
+    }
+    
+    public static void visualizarVoo(String numero){
+        
+            Scanner scn = new Scanner(System.in);
+
+            String resposta = "0";
+
+            for(int i = 0; i < objetos.size(); i++) {
+                
+                Voo voo = objetos.get(i);
+
+                System.out.println(voo.numero);
+
+                if(voo.numero.equals(numero) && (voo.qtd_max_passageiros > voo.qtd_reservas)) {
+                    
+                    System.out.println("\n".repeat(40));
+
+                    System.out.println("");
+                    System.out.print("#".repeat(20));
+                    System.out.print("  Informações  ");
+                    System.out.print("#".repeat(20));
+
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("Número: " + voo.numero);
+                    System.out.println("Origem: " + voo.origem);
+                    System.out.println("Destino: " + voo.destino);
+                    
+                    System.out.println("Quantidade máxima de passageiros: " + voo.qtd_max_passageiros);
+                    System.out.println("Reservas restantes: " + (voo.qtd_max_passageiros - voo.qtd_reservas));
+                    System.out.println("Horário de partida: " + voo.horario_partida);
+                    System.out.println("Horário de chegada: " + voo.horario_chegada);
+
+                    String n_voos = Integer.toString(objetos.size());
+
+                    System.out.println("");
+
+                    System.out.print("#".repeat(40 + "  Informações  ".length() + n_voos.length()));
+
+                    System.out.println("");
+                
+                    System.out.println("[0] Voltar             [1] Realizar reserva");
+                    resposta = scn.nextLine();
+        
+                    if(resposta.equals("1")){
+                              
+                        new Reserva(voo);            
+                        
+                        System.out.println("\nA reserva foi solicitada e está aguardando processamento!");
+                        System.out.println("[0] Voltar para o menu");
+                        resposta = scn.nextLine();
+                        
+                        if(resposta.equals("0")){
+
+                            Voo.mostrarVoos();
+
+                        }
+
+                    }else{
+                        Voo.mostrarVoos();
+                    }
+                  
+                }else if(i == objetos.size()){
+                    
+                    System.out.println("\n".repeat(40));
+
+                    System.out.println("VÔO INDISPONÍVEL");
+                    System.out.println("\n[0] Voltar");
+                    resposta = scn.nextLine();
+            
+                    if(resposta.equals("0")){
+                        Menu.mostrarMenu();
+                    }
+                }
+
+                
+            }
+
+
+
+    }
+
+}
