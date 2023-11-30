@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
-import Voo.Voo;
 
 public class Reserva {
 
@@ -14,6 +14,10 @@ public class Reserva {
   public Usuario usuario;
   public String status;
   public static Queue<Reserva> reservas_pendentes = new LinkedList<>();
+  public static Stack<Reserva> reservas_aprovadas = new Stack<>();
+  public static List<Reserva> lista_reservas = new LinkedList<>();
+
+
 
   public Reserva(Voo voo){
     
@@ -39,19 +43,23 @@ public class Reserva {
     String email = scn.nextLine();
   
     Usuario user = new Usuario(nome, idade, CPF, email);
-    
+
+
     this.voo = voo;
     this.usuario = user;
     this.status = "PENDENTE";
+
+
+    reservas_pendentes.add(this);
+    lista_reservas.addLast(this);
+    
   }    
 
-  public static void mostrarReservasPendentes(List<Voo> lista_voos){
+  public static void mostrarReservasPendentes(){
 
-    for(int i = 0; i < reservas_pendentes.size(); i++) {
-      
-      Reserva reserva = reservas_pendentes.element();
+    System.out.println("\n".repeat(40));
 
-      System.out.println("\n".repeat(40));
+    for(Reserva reserva : lista_reservas) {
 
       System.out.println("#".repeat(40));
 
@@ -63,14 +71,21 @@ public class Reserva {
       System.out.println("Horário de chegada: " + reserva.voo.horario_chegada);
 
       System.out.println("#".repeat(40));
-
+      System.out.println("\n");
     }
     Scanner scn = new Scanner(System.in);
-    System.out.println("[Digite 0 para voltar para o Menu]");
+
+    if(lista_reservas.size() == 0){
+      System.out.println("NÃO HÁ RESERVAS PENDENTES");
+    }
+
+    System.out.println("\n[0] Voltar");
     String resposta = scn.nextLine();
+
     if(resposta.equals("0")) {
-      Voo.mostrarVoos(lista_voos);
+      Menu.mostrarMenu();
     }
 
   }
+
 }
