@@ -8,7 +8,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         
-	//Cria instâncias da classe Voo com diferentes parâmetros
+	//Cria instâncias da classe Voo
         new Voo("2345", 100, "ES", 
         "SP", "18:00", "22:00");
 
@@ -18,10 +18,10 @@ public class Main {
         new Voo("3388", 138, "SP", 
         "RJ", "17:00", "21:00");
         
-	//Entra em um loop enquanto a variável Menu.encerrar for falsa
+	//Entra em um loop enquanto a variável for falsa
         while(!Menu.encerrar) {
 
-	    //Chama o método mostrarMenu() da classe Menu
+	    //Chama o método da classe Menu
             Menu.mostrarMenu();
 
         }
