@@ -1,0 +1,72 @@
+package Voo;
+
+import java.util.Scanner;
+
+public class Menu {
+
+    public static boolean encerrar = false;
+    
+    public static void mostrarMenu(){
+        
+        
+        Administrador adm = new Administrador();
+        
+        System.out.println("\n".repeat(40));
+        
+        if(Administrador.logged){
+            System.out.println("--MODO ADMINISTRADOR--");
+        }
+        System.out.println("#".repeat(40));
+        System.out.println("");
+        System.out.println("[0] Encerrar o programa");
+        System.out.println("[1] Visualizar vôos disponíveis");
+        System.out.println("[2] Visualizar as reservas pendentes");
+        System.out.println("[3] Visualizar vôos cheios");
+        if(!Administrador.logged){
+            System.out.println("[4] Entrar como administrador");
+        }else{
+            System.out.println("[4] Sair do modo administrador");
+            System.out.println("[5] Fazer check-in das reservas");
+        }
+        System.out.println("");
+        System.out.println("#".repeat(40));
+        
+        Scanner scn = new Scanner(System.in);
+
+        String resposta = scn.next();
+
+        switch(resposta){
+            case "0":
+                encerrar = true;
+                break;
+            case "1":
+                Voo.mostrarVoos();
+                break;
+            case "2":
+                Reserva.mostrarReservasPendentes();
+                break;
+            case "3":
+                Voo.mostrarVoosCheios();
+                break;
+            case "4":
+                if(Administrador.logged){
+                    System.out.println("\n".repeat(40));
+                    Administrador.logged = false;
+                    System.out.println("Deslogado!");                    
+                    System.out.println("\n[0] Voltar");
+                    resposta = scn.nextLine();
+                    if(resposta.equals("0")){
+                        Menu.mostrarMenu();
+                    }
+                } else {
+                    adm.entrar();
+                }
+                break;
+            case "5":
+                Administrador.checkin();
+        }
+        
+    }
+
+
+}
