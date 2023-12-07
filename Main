@@ -9,13 +9,13 @@ public class Main {
     public static void main(String[] args) {
         
 	//Cria instâncias da classe Voo
-        new Voo("2345", 100, "ES", 
+        new Voo("2345", 200, "ES", 
         "SP", "18:00", "22:00");
 
-        new Voo("3345", 96, "ES", 
+        new Voo("3345", 2, "ES", 
         "MG", "17:00", "21:00");
         
-        new Voo("3388", 138, "SP", 
+        new Voo("3388", 300, "SP", 
         "RJ", "17:00", "21:00");
         
 	//Entra em um loop enquanto a variável for falsa
