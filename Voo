@@ -98,6 +98,7 @@ public class Voo {
             System.out.println("\nNENHUM VÔO DISPONÍVEL");
         }
 
+// caso o resultado da pesquisa for menor que 0 significa que não existem voos disponiveis
 
         System.out.println("");
         System.out.println("[0] Voltar");
