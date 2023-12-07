@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
-
 public class Voo {
-    
+
+    // aqui ele cria a classe chamada voo
+
     public String numero;
     public int qtd_max_passageiros;
     public int qtd_reservas;
@@ -16,13 +17,22 @@ public class Voo {
     public String destino;
     public String horario_partida;
     public String horario_chegada;
+
+// nessa parte criamos os objetos de cada classe
+
     private static List<Voo> objetos =  new ArrayList<>();
 
+// aqui eu crio uma lista onde eu guardo cada objeto em uma forma privada para que a informação não seja acessada por qualquer pessoa
+
     public Voo(String numero, int qtd_max_passageiros, String origem, String destino, String horario_partida, String horario_chegada){
+
+// nosso metodo construtor onde iremos inserir cada objeto da classe
 
         this.numero = numero;
 
         if(this.numero.length() == 4) {
+
+// eu coloco um limite de 4 algarismos
             
             this.qtd_max_passageiros = qtd_max_passageiros;
             this.qtd_reservas = 0;
@@ -32,6 +42,8 @@ public class Voo {
             this.horario_chegada = horario_chegada;
 
             objetos.add(this);
+
+// quando eu coloco this é porque eu quero me referir ao objeto e não ao comando
         }
         
     }
@@ -43,18 +55,26 @@ public class Voo {
 
         System.out.println("\n".repeat(40));
 
+// esta é uma parte estetica o n/ vai fazer com que na hora que o codigo seja impresso haja um espaço de 40 linhas
+
         for(int i = 0; i < objetos.size(); i++){
             
             Voo voo = objetos.get(i);
            
             if(voo.qtd_reservas < voo.qtd_max_passageiros){
 
+// aqui o codigo verifica se a quantidade de reservas é menor do que a quantidade maxima de passageiros
+
                 cont++;
+
+// contador
 
                 System.out.println("");
                 System.out.print("#".repeat(20));
                 System.out.print("  " + (i + 1) + "º VÔO  ");
                 System.out.print("#".repeat(20));
+
+// parte estetica onde vai se repetir o hashtag
     
                 System.out.println("");
                 System.out.println("");
@@ -77,6 +97,7 @@ public class Voo {
         if(cont <= 0){
             System.out.println("\nNENHUM VÔO DISPONÍVEL");
         }
+
 
         System.out.println("");
         System.out.println("[0] Voltar");
